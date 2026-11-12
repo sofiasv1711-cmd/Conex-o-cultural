@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Conexão Cultural — oficinas de arte, criatividade e oportunidades para jovens do Grajaú.">
+  <title>Conexão Cultural | Talento não tem endereço!</title>
+  <style>
+    :root {
+      --yellow: #ffd43b;
+      --orange: #f47721;
+      --blue: #2457d6;
+      --navy: #14213d;
+      --ink: #202638;
+      --muted: #657087;
+      --paper: #fffdf7;
+      --white: #fff;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+    .topbar {
+      background: var(--navy);
+      color: white;
+      padding: 10px 6%;
+      font-size: .88rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    header {
+      background: rgba(255,253,247,.96);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid #eee8d9;
+      backdrop-filter: blur(10px);
+    }
+    .nav {
+      max-width: 1160px;
+      margin: auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-weight: 900;
+      font-size: 1.2rem;
+      color: var(--navy);
+    }
+    .brand-mark {
+      width: 39px; height: 39px; border-radius: 12px;
+      background: conic-gradient(var(--yellow) 0 33%, var(--orange) 33% 66%, var(--blue) 66%);
+      display: grid; place-items: center; color: white;
+      font-weight: 900; font-size: 1.15rem;
+      box-shadow: 3px 3px 0 var(--navy);
+    }
+    nav { display: flex; gap: 21px; flex-wrap: wrap; }
+    nav a { text-decoration: none; font-size: .92rem; font-weight: 700; }
+    nav a:hover { color: var(--orange); }
+    .hero {
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 90% 10%, rgba(255,212,59,.8) 0 9%, transparent 9.5%),
+        radial-gradient(circle at 82% 88%, rgba(244,119,33,.18) 0 18%, transparent 18.5%),
+        linear-gradient(120deg, #fff5c8, #fffdf7 55%, #eaf0ff);
+      padding: 82px 24px 76px;
+    }
+    .hero-inner {
+      max-width: 1100px; margin: auto;
+      display: grid; grid-template-columns: 1.2fr .8fr;
+      align-items: center; gap: 48px;
+    }
+    .eyebrow {
+      display: inline-block; background: var(--yellow);
+      padding: 6px 12px; border-radius: 999px;
+      font-size: .78rem; font-weight: 900; letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    h1 {
+      color: var(--navy); font-size: clamp(2.7rem, 6vw, 5rem);
+      line-height: .98; letter-spacing: -.055em; margin: 18px 0;
+    }
+    h1 span { color: var(--blue); }
+    .hero p { max-width: 590px; font-size: 1.12rem; color: #46516a; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
+    .btn {
+      display: inline-block; padding: 13px 19px; border-radius: 12px;
+      text-decoration: none; font-weight: 800; border: 2px solid var(--navy);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 4px 4px 0 var(--navy); }
+    .btn-primary { background: var(--blue); color: white; border-color: var(--blue); }
+    .btn-secondary { background: white; color: var(--navy); }
+    .art-card {
+      background: white; padding: 22px; border-radius: 28px;
+      border: 3px solid var(--navy); box-shadow: 12px 12px 0 var(--yellow);
+      transform: rotate(2deg);
+    }
+    .art-board {
+      min-height: 280px; border-radius: 18px; padding: 25px;
+      background: var(--blue); color: white; position: relative; overflow: hidden;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .art-board:before, .art-board:after {
+      content: ""; position: absolute; border-radius: 50%; opacity: .95;
+    }
+    .art-board:before { width: 170px; height: 170px; background: var(--orange); right: -35px; top: -40px; }
+    .art-board:after { width: 130px; height: 130px; background: var(--yellow); left: -35px; bottom: -35px; }
+    .paint-word { position: relative; z-index: 1; font-size: 2rem; line-height: 1.05; font-weight: 1000; text-transform: uppercase; }
+    .paint-caption { position: relative; z-index: 1; font-weight: 700; }
+    section { padding: 76px 24px; }
+    .container { max-width: 1100px; margin: auto; }
+    .section-kicker { color: var(--orange); text-transform: uppercase; font-size: .78rem; font-weight: 900; letter-spacing: .12em; }
+    h2 { color: var(--navy); font-size: clamp(2rem, 4vw, 3rem); line-height: 1.08; margin: 8px 0 14px; letter-spacing: -.035em; }
+    .lead { color: var(--muted); max-width: 760px; font-size: 1.05rem; }
+    .problem { background: white; }
+    .stats {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 30px;
+    }
+    .stat {
+      padding: 24px; border: 2px solid #e9edf5; border-radius: 20px;
+      background: #fff; box-shadow: 5px 5px 0 #eef1f7;
+    }
+    .stat strong { display: block; color: var(--blue); font-size: 2.5rem; line-height: 1.1; }
+    .stat span { color: var(--muted); font-size: .92rem; }
+    .note { margin-top: 20px; padding: 16px 18px; background: #fff5c8; border-left: 5px solid var(--yellow); border-radius: 10px; font-size: .92rem; }
+    .solution-grid, .money-grid, .audience-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 30px; }
+    .card {
+      background: white; padding: 24px; border-radius: 20px;
+      border: 1px solid #e8eaf0; box-shadow: 0 8px 24px rgba(20,33,61,.06);
+    }
+    .icon {
+      width: 48px; height: 48px; display: grid; place-items: center;
+      border-radius: 15px; background: var(--yellow); font-size: 1.45rem; margin-bottom: 15px;
+    }
+    .card:nth-child(2) .icon { background: #ffe0cf; }
+    .card:nth-child(3) .icon { background: #dce6ff; }
+    h3 { color: var(--navy); margin: 0 0 8px; font-size: 1.18rem; }
+    .card p { color: var(--muted); margin: 0; }
+    .how { background: #f0f4ff; }
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 30px; }
+    .step { background: white; padding: 20px; border-radius: 16px; border-top: 5px solid var(--orange); }
+    .step b { color: var(--blue); font-size: 1.4rem; display: block; }
+    .money { background: var(--navy); color: white; }
+    .money h2, .money h3 { color: white; }
+    .money .lead { color: #d6deef; }
+    .money .card { color: var(--ink); }
+    .money .card p { color: var(--muted); }
+    .money .card h3 { color: var(--navy); }
+    .money-callout { margin-top: 24px; color: var(--navy); background: var(--yellow); border-radius: 16px; padding: 18px 22px; font-weight: 800; }
+    .audiences { background: #fff8e5; }
+    .audience-grid { grid-template-columns: repeat(2, 1fr); }
+    .audience-grid .card { border-top: 5px solid var(--blue); }
+    .audience-grid .card:nth-child(2) { border-top-color: var(--orange); }
+    .contact-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 32px; margin-top: 28px; }
+    .contact-panel { background: var(--blue); color: white; border-radius: 22px; padding: 28px; }
+    .contact-panel h3 { color: white; font-size: 1.5rem; }
+    form { display: grid; gap: 13px; }
+    label { font-weight: 700; font-size: .9rem; }
+    input, select, textarea {
+      width: 100%; padding: 13px 14px; border: 1px solid #d6dbe5;
+      border-radius: 10px; font: inherit; background: white;
+    }
+    textarea { min-height: 120px; resize: vertical; }
+    button {
+      border: 0; background: var(--orange); color: white; padding: 14px 18px;
+      border-radius: 10px; font: inherit; font-weight: 900; cursor: pointer;
+    }
+    button:hover { filter: brightness(.95); }
+    .form-hint { color: var(--muted); font-size: .83rem; }
+    footer { background: var(--navy); color: #dce3f2; padding: 25px 24px; text-align: center; font-size: .88rem; }
+    footer strong { color: var(--yellow); }
+    @media (max-width: 760px) {
+      .nav { align-items: flex-start; flex-direction: column; }
+      nav { gap: 12px; }
+      .hero-inner, .contact-grid { grid-template-columns: 1fr; }
+      .hero { padding-top: 55px; }
+      .art-card { max-width: 430px; }
+      .stats, .solution-grid, .money-grid, .steps, .audience-grid { grid-template-columns: 1fr; }
+      section { padding: 58px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <span>Projeto cultural comunitário • Grajaú, São Paulo</span>
+    <span>Arte, oportunidade e pertencimento</span>
+  </div>
+  <header>
+    <div class="nav">
+      <a class="brand" href="#inicio"><span class="brand-mark">C</span> Conexão Cultural</a>
+      <nav aria-label="Navegação principal">
+        <a href="#problema">O problema</a>
+        <a href="#solucao">A solução</a>
+        <a href="#negocio">Como se mantém</a>
+        <a href="#investidores">Investidores</a>
+        <a href="#revendedores">Parceiros</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-inner">
+        <div>
+          <span class="eyebrow">Cultura feita na comunidade</span>
+          <h1>Conexão <span>Cultural</span></h1>
+          <h2 style="font-size:1.55rem; margin:0; color:var(--orange)">“Talento não tem endereço!”</h2>
+          <p>Oficinas acessíveis de desenho, pintura, grafite, fotografia e artesanato para crianças e adolescentes do Grajaú. Um espaço para aprender, criar e mostrar talentos.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#solucao">Conheça o projeto</a>
+            <a class="btn btn-secondary" href="#contato">Seja um parceiro</a>
+          </div>
+        </div>
+        <div class="art-card" aria-label="Painel ilustrativo de arte">
+          <div class="art-board">
+            <div class="paint-word">Ideias<br>viram arte.<br>Arte cria<br>conexões.</div>
+            <div class="paint-caption">DESENHO • GRAFITE • FOTO • CRIAÇÃO</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="problem" id="problema">
+      <div class="container">
+        <span class="section-kicker">Por que existimos?</span>
+        <h2>A cultura precisa chegar a todos.</h2>
+        <p class="lead">O acesso a espaços e atividades culturais é desigual. Um levantamento acadêmico sobre o distrito do Grajaú mostra a diferença na distribuição de equipamentos culturais em comparação com outro distrito de São Paulo.</p>
+        <div class="stats">
+          <div class="stat"><strong>3</strong><span>equipamentos culturais públicos registrados no Grajaú em 2017.</span></div>
+          <div class="stat"><strong>381.277</strong><span>habitantes no Grajaú, aproximadamente, segundo o estudo usado como referência.</span></div>
+          <div class="stat"><strong>1 para 127 mil</strong><span>relação aproximada: um equipamento cultural para cada 127 mil moradores.</span></div>
+        </div>
+        <div class="note"><strong>Comparação — 2017:</strong> Grajaú: 3 equipamentos para 381.277 habitantes. Butantã: 34 equipamentos para 451.311 habitantes. Os números são históricos e se referem ao levantamento citado; não representam necessariamente a situação atual.</div>
+        <p class="form-hint">Fonte: estudo acadêmico publicado na Revista Contemporartes, conforme referência apresentada no projeto. Antes de publicar, inclua aqui o link direto para o estudo completo.</p>
+      </div>
+    </section>
+
+    <section id="solucao">
+      <div class="container">
+        <span class="section-kicker">Nossa solução</span>
+        <h2>Arte na Quebrada: oficinas culturais</h2>
+        <p class="lead">A Conexão Cultural organiza oficinas gratuitas ou de baixo custo, aproximando jovens artistas, educadores, parceiros e moradores.</p>
+        <div class="solution-grid">
+          <article class="card"><div class="icon">🎨</div><h3>Desenho e pintura</h3><p>Atividades práticas para experimentar técnicas, cores e formas de expressão.</p></article>
+          <article class="card"><div class="icon">🧱</div><h3>Grafite e arte urbana</h3><p>Introdução à arte urbana em espaços autorizados, valorizando a identidade do território.</p></article>
+          <article class="card"><div class="icon">📷</div><h3>Fotografia e artesanato</h3><p>Criação de imagens e objetos artísticos com materiais acessíveis e reutilizáveis.</p></article>
+        </div>
+        <div class="steps">
+          <div class="step"><b>01</b><strong>Parcerias</strong><p>Encontramos espaços comunitários e apoiadores.</p></div>
+          <div class="step"><b>02</b><strong>Inscrições</strong><p>Divulgamos as oficinas e recebemos participantes.</p></div>
+          <div class="step"><b>03</b><strong>Criação</strong><p>Jovens participam das atividades com orientação.</p></div>
+          <div class="step"><b>04</b><strong>Mostra cultural</strong><p>Os trabalhos podem ser apresentados à comunidade.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="how" id="negocio">
+      <div class="container">
+        <span class="section-kicker">Sustentabilidade do projeto</span>
+        <h2>Como a Conexão Cultural ganha dinheiro?</h2>
+        <p class="lead">O projeto pode combinar apoio de empresas com atividades pagas para organizações, mantendo vagas gratuitas ou com contribuição acessível para a comunidade.</p>
+        <div class="money-grid">
+          <article class="card"><div class="icon">🤝</div><h3>Patrocínios</h3><p>Comércios e empresas apoiam uma oficina ou uma temporada em troca de divulgação responsável da marca.</p></article>
+          <article class="card"><div class="icon">🏫</div><h3>Oficinas contratadas</h3><p>Escolas, instituições e eventos contratam oficinas culturais para seus públicos.</p></article>
+          <article class="card"><div class="icon">🖼️</div><h3>Feiras e produtos</h3><p>Venda de trabalhos artísticos e kits criativos, com participação e remuneração justa dos jovens artistas.</p></article>
+        </div>
+        <div class="money-callout">Meta: usar parte da receita para comprar materiais, remunerar oficineiros e oferecer vagas gratuitas ou de baixo custo.</div>
+      </div>
+    </section>
+
+    <section class="audiences" id="investidores">
+      <div class="container">
+        <span class="section-kicker">Para quem quer apoiar</span>
+        <h2>Investidores e comerciantes</h2>
+        <p class="lead">Comércios locais, empresas, instituições e apoiadores podem fortalecer a cultura do Grajaú com recursos, materiais, espaço ou serviços.</p>
+        <div class="audience-grid">
+          <article class="card">
+            <div class="icon">💼</div>
+            <h3>Para investidores e patrocinadores</h3>
+            <p>Você pode financiar oficinas, materiais ou eventos. O projeto apresenta um plano de uso dos recursos, orçamento, número de participantes e resultados alcançados. O apoio pode ser financeiro ou em produtos e serviços.</p>
+          </article>
+          <article class="card" id="revendedores">
+            <div class="icon">🏪</div>
+            <h3>Para comerciantes e parceiros</h3>
+            <p>Seu estabelecimento pode divulgar as oficinas, apoiar com materiais, oferecer descontos, receber uma exposição de trabalhos ou contratar atividades. Também é possível apoiar uma turma ou evento específico.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="container">
+        <span class="section-kicker">Vamos criar conexões?</span>
+        <h2>Entre em contato</h2>
+        <p class="lead">Quer apoiar, patrocinar, contratar uma oficina ou participar como parceiro? Envie uma mensagem para conversar com a equipe.</p>
+        <div class="contact-grid">
+          <div class="contact-panel">
+            <h3>Faça parte dessa ideia!</h3>
+            <p>Juntos, podemos abrir espaço para novos talentos e ampliar o acesso à arte no Grajaú.</p>
+            <p><strong>Conexão Cultural</strong><br>“Talento não tem endereço!”</p>
+            <p>Local de atuação: Grajaú — Zona Sul de São Paulo.</p>
+          </div>
+          <form id="contactForm">
+            <div><label for="name">Nome</label><input id="name" name="name" required placeholder="Seu nome"></div>
+            <div><label for="email">E-mail</label><input id="email" name="email" type="email" required placeholder="voce@email.com"></div>
+            <div><label for="type">Quero conversar sobre</label>
+              <select id="type" name="type" required>
+                <option value="">Selecione uma opção</option>
+                <option>Investimento ou patrocínio</option>
+                <option>Parceria comercial</option>
+                <option>Revenda ou divulgação</option>
+                <option>Participação nas oficinas</option>
+                <option>Contratação de oficina</option>
+                <option>Outro assunto</option>
+              </select>
+            </div>
+            <div><label for="message">Mensagem</label><textarea id="message" name="message" required placeholder="Conte como gostaria de participar..."></textarea></div>
+            <button type="submit">Preparar mensagem</button>
+            <p class="form-hint">Demonstração: o formulário abre seu aplicativo de e-mail para enviar a mensagem. É necessário configurar o e-mail oficial do projeto antes de publicar.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>© <span id="year"></span> <strong>Conexão Cultural</strong> • “Talento não tem endereço!” • Grajaú, SP</footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('contactForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+      const data = new FormData(this);
+      const subject = encodeURIComponent('Contato pelo site — Conexão Cultural');
+      const body = encodeURIComponent(
+        'Nome: ' + data.get('name') + '\\n' +
+        'E-mail: ' + data.get('email') + '\\n' +
+        'Assunto: ' + data.get('type') + '\\n\\n' +
+        'Mensagem:\\n' + data.get('message')
+      );
+      // Troque o endereço abaixo pelo e-mail oficial do projeto.
+      window.location.href = 'mailto:SEUEMAIL@EXEMPLO.COM?subject=' + subject + '&body=' + body;
+    });
+  </script>
+</body>
+</html>
